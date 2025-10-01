@@ -39,7 +39,6 @@ export default function StickerForm({
         <FilePreview
           file={file}
           onRemove={onRemove}
-          index={index}
           disabled={disabled}
         />
 

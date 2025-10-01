@@ -1,8 +1,19 @@
 import React from 'react';
 
 interface DropzoneAreaProps {
-  getRootProps: () => any;
-  getInputProps: () => any;
+  getRootProps: () => {
+    onClick: () => void;
+    onDragEnter: () => void;
+    onDragLeave: () => void;
+    onDragOver: (e: React.DragEvent) => void;
+    onDrop: (e: React.DragEvent) => void;
+  };
+  getInputProps: () => {
+    type: string;
+    accept: string;
+    multiple: boolean;
+    disabled?: boolean;
+  };
   isDragActive: boolean;
   disabled?: boolean;
 }

@@ -1,5 +1,4 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
-import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 
 // S3 클라이언트 초기화
 const s3Client = new S3Client({
@@ -26,7 +25,7 @@ export async function uploadToS3(
 ): Promise<S3UploadResult> {
   try {
     const buffer = Buffer.from(await file.arrayBuffer());
-    
+
     const command = new PutObjectCommand({
       Bucket: process.env.AWS_S3_BUCKET_NAME!,
       Key: key,
@@ -46,10 +45,10 @@ export async function uploadToS3(
       key,
     };
   } catch (error) {
-    console.error('S3 업로드 에러:', error);
+    console.error("S3 업로드 에러:", error);
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'S3 업로드 실패',
+      error: error instanceof Error ? error.message : "S3 업로드 실패",
     };
   }
 }
@@ -63,15 +62,15 @@ export function generateFileKey(
   category: string,
   timestamp: number = Date.now()
 ): string {
-  const fileExtension = originalName.split('.').pop();
-  const fileNameWithoutExt = originalName.replace(/\.[^/.]+$/, ''); // 확장자 제거
-  
+  const fileExtension = originalName.split(".").pop();
+  const fileNameWithoutExt = originalName.replace(/\.[^/.]+$/, ""); // 확장자 제거
+
   // 한글과 영문, 숫자, 일부 특수문자만 허용하고 나머지는 _로 변환
   const sanitizedOriginalName = fileNameWithoutExt
-    .replace(/[^가-힣a-zA-Z0-9.-]/g, '_') // 한글, 영문, 숫자, ., -만 허용
-    .replace(/_+/g, '_') // 연속된 _를 하나로 변환
-    .replace(/^_|_$/g, ''); // 앞뒤 _ 제거
-  
+    .replace(/[^가-힣a-zA-Z0-9.-]/g, "_") // 한글, 영문, 숫자, ., -만 허용
+    .replace(/_+/g, "_") // 연속된 _를 하나로 변환
+    .replace(/^_|_$/g, ""); // 앞뒤 _ 제거
+
   // 카테고리별 폴더 구조: public/stickers/{category}/{timestamp}_{filename}.{ext}
   return `public/stickers/${category}/${timestamp}_${sanitizedOriginalName}.${fileExtension}`;
 }
@@ -85,16 +84,22 @@ export function validateFile(file: File): { valid: boolean; error?: string } {
   if (file.size > maxSize) {
     return {
       valid: false,
-      error: '파일 크기는 10MB를 초과할 수 없습니다.',
+      error: "파일 크기는 10MB를 초과할 수 없습니다.",
     };
   }
 
   // 허용된 이미지 타입
-  const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+  const allowedTypes = [
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+    "image/gif",
+    "image/webp",
+  ];
   if (!allowedTypes.includes(file.type)) {
     return {
       valid: false,
-      error: '지원되지 않는 파일 형식입니다. (JPEG, PNG, GIF, WebP만 허용)',
+      error: "지원되지 않는 파일 형식입니다. (JPEG, PNG, GIF, WebP만 허용)",
     };
   }
 

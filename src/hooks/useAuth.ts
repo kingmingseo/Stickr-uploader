@@ -14,7 +14,7 @@ export default function useAuth() {
       setIsLoading(true);
 
       // 보안 강화를 위해 서버 라우트를 통해 로그인 처리 (관리자 선검증 + 세션 서버발급)
-      const data = await axios.post("/api/auth/login", { email, password }, {});
+      await axios.post("/api/auth/login", { email, password }, {});
       return { success: true };
     } catch (error) {
       const errorMessage =
