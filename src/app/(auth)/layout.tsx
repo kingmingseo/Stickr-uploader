@@ -26,7 +26,7 @@ export default function AuthLayout({
             Stickr Uploader
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            스티커를 쉽고 빠르게 업로드하고 관리하세요
+            Stickr 관리자 페이지
           </p>
         </div>
       </div>
@@ -40,7 +40,7 @@ export default function AuthLayout({
       {/* 하단 텍스트 */}
       <div className="mt-8 text-center relative z-10">
         <p className="text-sm text-gray-600">
-          © 2024 Stickr Uploader. All rights reserved.
+          © 2025 Stickr Uploader. All rights reserved.
         </p>
       </div>
     </div>

@@ -22,7 +22,7 @@ export default function LoginPage() {
   return (
     <div className="animate-slide-in">
       <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">
-        환영합니다! 👋
+        관리자님 환영합니다! 👋
       </h2>
       <p className="text-center text-gray-600 mb-8 text-sm">
         계정에 로그인하여 시작하세요
