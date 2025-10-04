@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 import LoginForm from "@/components/LoginForm";
 import useAuth from "@/hooks/useAuth";
 
+// 로그인 페이지는 동적으로 렌더링되어야 함
+export const dynamic = 'force-dynamic';
+
 export default function LoginPage() {
   const router = useRouter();
   const { login, error, isLoading } = useAuth();

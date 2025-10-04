@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
+import StickerLogo from '@/assets/Stickr.png';
 
 export default function AuthLayout({
   children,
@@ -17,10 +19,14 @@ export default function AuthLayout({
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 animate-fade-in">
         {/* 로고 및 제목 영역 */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 mb-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl shadow-lg">
-            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
+          <div className="inline-flex items-center justify-center mb-4">
+            <Image
+              src={StickerLogo}
+              alt="Stickr Logo"
+              width={80}
+              height={80}
+              className="object-contain"
+            />
           </div>
           <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
             Stickr Uploader
