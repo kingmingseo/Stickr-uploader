@@ -54,8 +54,15 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-900 mb-8">스티커 업로드</h1>
+    <div className="max-w-6xl mx-auto px-4">
+      <div className="mb-8">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3">
+          스티커 업로드
+        </h1>
+        <p className="text-gray-600 text-lg">
+          여러 개의 스티커를 한 번에 업로드하고 관리하세요
+        </p>
+      </div>
       <MultiStickerUpload onUpload={handleUpload} isLoading={isUploading} />
     </div>
   );

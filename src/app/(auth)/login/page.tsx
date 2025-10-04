@@ -20,14 +20,23 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold text-center text-gray-900 mb-6">
-        로그인
+    <div className="animate-slide-in">
+      <h2 className="text-2xl font-bold text-center text-gray-900 mb-2">
+        환영합니다! 👋
       </h2>
+      <p className="text-center text-gray-600 mb-8 text-sm">
+        계정에 로그인하여 시작하세요
+      </p>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-          {error}
+        <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-lg flex items-start gap-3 animate-fade-in">
+          <svg className="w-5 h-5 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
+          </svg>
+          <div>
+            <p className="font-semibold">로그인 실패</p>
+            <p className="text-sm">{error}</p>
+          </div>
         </div>
       )}
 
