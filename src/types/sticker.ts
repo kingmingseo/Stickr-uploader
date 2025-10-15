@@ -2,9 +2,10 @@ export interface Sticker {
   id: string;
   title: string;
   description: string;
-  category: 'emotion' | 'animal' | 'food' | 'character' | 'other';
+  category: 'handwriting' | 'dot' | 'speech-bubble' | 'character' | 'emoji' | 'food';
   status: 'pending' | 'approved' | 'rejected';
   image_url: string;
+  tags?: string[];
   user_id: string;
   created_at: string;
   updated_at: string;
@@ -14,6 +15,7 @@ export interface CreateStickerData {
   title: string;
   description: string;
   category: string;
+  tags?: string[];
   file: File;
 }
 
@@ -36,4 +38,18 @@ export interface ApproveResponse {
   stickerId: string;
   action: 'approve' | 'reject';
   error?: string;
+}
+
+export interface StickerFormData {
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+}
+
+export interface MultiStickerUploadData {
+  stickers: {
+    file: File;
+    formData: StickerFormData;
+  }[];
 }
