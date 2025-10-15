@@ -5,7 +5,6 @@ import { createClient } from '@/utils/supabase/server';
 import { getEnglishCategory } from '@/constants/categories';
 
 // Sharp 라이브러리 사용을 위해 Node.js runtime 지정
-export const runtime = 'nodejs';
 
 export async function POST(request: NextRequest) {
   try {
