@@ -6,6 +6,7 @@ import Button from './ui/Button';
 import DropzoneArea from './DropzoneArea';
 import StickerForm from './StickerForm';
 import { StickerFormData, MultiStickerUploadData } from '../types/sticker';
+import { categoryOptions } from '../constants/categories';
 
 interface MultiStickerUploadProps {
   onUpload: (data: MultiStickerUploadData) => void;
@@ -63,6 +64,14 @@ export default function MultiStickerUpload({ onUpload, isLoading = false }: Mult
     setFiles(prev => prev.filter(file => file.id !== fileId));
   };
 
+  const applyBulkCategory = (category: string) => {
+    if (!category) return;
+    setFiles(prev => prev.map(file => ({
+      ...file,
+      formData: { ...file.formData, category }
+    })));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -108,17 +117,45 @@ export default function MultiStickerUpload({ onUpload, isLoading = false }: Mult
         {/* 선택된 파일들과 각각의 폼 */}
         {files.length > 0 && (
           <div className="space-y-6 animate-fade-in">
-            <div className="flex items-center justify-between bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 rounded-xl border border-blue-200">
-              <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
-                <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z"/>
-                  <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
-                </svg>
-                선택된 파일
-              </h3>
-              <span className="px-4 py-2 bg-blue-600 text-white text-sm font-bold rounded-full">
-                {files.length}개
-              </span>
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 rounded-xl border border-blue-200">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                  <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V6.414A2 2 0 0016.414 5L14 2.586A2 2 0 0012.586 2H9z"/>
+                    <path d="M3 8a2 2 0 012-2v10h8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+                  </svg>
+                  선택된 파일
+                </h3>
+                <span className="px-4 py-2 bg-blue-600 text-white text-sm font-bold rounded-full">
+                  {files.length}개
+                </span>
+              </div>
+              
+              {/* 일괄 카테고리 선택 */}
+              <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm px-4 py-3 rounded-lg border border-blue-200/50">
+                <label className="text-sm font-semibold text-gray-700 whitespace-nowrap flex items-center gap-2">
+                  <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                  </svg>
+                  일괄 카테고리 적용
+                </label>
+                <select
+                  onChange={(e) => applyBulkCategory(e.target.value)}
+                  className="flex-1 px-4 py-2 border-2 border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white hover:border-gray-300 transition-all duration-200 text-sm font-medium"
+                  disabled={isLoading}
+                  defaultValue=""
+                >
+                  <option value="">카테고리를 선택하세요</option>
+                  {categoryOptions.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+                <span className="text-xs text-gray-500 whitespace-nowrap">
+                  모든 파일에 적용됩니다
+                </span>
+              </div>
             </div>
             
             <div className="grid gap-6">
