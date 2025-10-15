@@ -95,6 +95,7 @@ export async function POST(request: NextRequest) {
       category: englishCategory,
       originalCategory: category,
       userId: user.id,
+      optimization: uploadResult.optimizationInfo,
     });
 
     return NextResponse.json({
@@ -102,6 +103,7 @@ export async function POST(request: NextRequest) {
       message: '스티커가 성공적으로 업로드되었습니다',
       stickerId: stickerResult.sticker?.id,
       imageUrl: uploadResult.url,
+      optimization: uploadResult.optimizationInfo,
     });
 
   } catch (error) {

@@ -6,6 +6,7 @@ export const categoriesMap: Record<string, string> = {
   캐릭터: 'character',
   이모지: 'emoji',
   음식: 'food',
+  장식: 'decoration',
 };
 
 // 한국어 → 영어 변환

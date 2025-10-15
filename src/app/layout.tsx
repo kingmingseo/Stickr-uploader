@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Stickr Uploader",
   description: "스티커 업로드 및 관리 시스템",
+  icons: {
+    icon: "/Stickr.png",
+  },
 };
 
 export default function RootLayout({
