@@ -2,11 +2,10 @@ export interface Sticker {
   id: string;
   title: string;
   description: string;
-  category: string;
+  category: 'emotion' | 'animal' | 'food' | 'character' | 'other';
+  status: 'pending' | 'approved' | 'rejected';
   image_url: string;
-  tags: string[];
-  like_count: number;
-  auto_increment_id: number;
+  user_id: string;
   created_at: string;
   updated_at: string;
 }
@@ -15,27 +14,13 @@ export interface CreateStickerData {
   title: string;
   description: string;
   category: string;
-  tags: string[];
   file: File;
 }
 
-export interface StickerFormData {
-  title: string;
-  description: string;
-  category: string;
-  tags: string[];
-}
-
-export interface MultiStickerUploadData {
-  stickers: Array<{
-    file: File;
-    formData: StickerFormData;
-  }>;
-}
-
 export interface StickerFilters {
+  status?: 'pending' | 'approved' | 'rejected';
   category?: string;
-  tags?: string[];
+  user_id?: string;
 }
 
 export interface UploadResponse {

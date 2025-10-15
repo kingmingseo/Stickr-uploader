@@ -62,6 +62,7 @@ export default function LoginForm({ onSubmit, isLoading = false }: LoginFormProp
         error={errors.email}
         placeholder="이메일을 입력하세요"
         disabled={isLoading}
+        autoComplete="email"
       />
 
       <Input
@@ -73,6 +74,7 @@ export default function LoginForm({ onSubmit, isLoading = false }: LoginFormProp
         error={errors.password}
         placeholder="비밀번호를 입력하세요"
         disabled={isLoading}
+        autoComplete="current-password"
       />
 
       <Button
