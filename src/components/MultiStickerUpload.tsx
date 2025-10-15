@@ -22,16 +22,21 @@ export default function MultiStickerUpload({ onUpload, isLoading = false }: Mult
   const [files, setFiles] = useState<FileWithFormData[]>([]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    const newFiles: FileWithFormData[] = acceptedFiles.map(file => ({
-      file,
-      formData: {
-        title: '',
-        description: '',
-        category: '',
-        tags: []
-      },
-      id: Math.random().toString(36).substr(2, 9)
-    }));
+    const newFiles: FileWithFormData[] = acceptedFiles.map(file => {
+      // 파일명에서 확장자 제거
+      const fileNameWithoutExt = file.name.replace(/\.[^/.]+$/, '');
+      
+      return {
+        file,
+        formData: {
+          title: fileNameWithoutExt,
+          description: fileNameWithoutExt,
+          category: '',
+          tags: [fileNameWithoutExt]
+        },
+        id: Math.random().toString(36).substr(2, 9)
+      };
+    });
     
     setFiles(prev => [...prev, ...newFiles]);
   }, []);
@@ -42,7 +47,7 @@ export default function MultiStickerUpload({ onUpload, isLoading = false }: Mult
       'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp']
     },
     multiple: true,
-    maxFiles: 10,
+    maxFiles: 50,
     disabled: isLoading
   });
 
@@ -90,7 +95,7 @@ export default function MultiStickerUpload({ onUpload, isLoading = false }: Mult
             <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
             </svg>
-            스티커 이미지 선택 (최대 10개)
+            스티커 이미지 선택 (최대 50개)
           </label>
           <DropzoneArea
             getRootProps={getRootProps}
