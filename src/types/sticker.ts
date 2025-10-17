@@ -40,7 +40,7 @@ export interface ApproveResponse {
   error?: string;
 }
 
-export interface StickerFormData {
+export interface StickerData {
   title: string;
   description: string;
   category: string;
@@ -50,6 +50,6 @@ export interface StickerFormData {
 export interface MultiStickerUploadData {
   stickers: {
     file: File;
-    formData: StickerFormData;
+    formData: StickerData;
   }[];
 }
