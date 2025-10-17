@@ -15,7 +15,7 @@ export default function FilePreview({
   return (
     <div className="flex-shrink-0 group">
       <div className="relative">
-        <div className="w-32 h-32 bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-gray-200 rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-300">
+        <div className="w-32 h-32 bg-gray-300 border-2 border-gray-200 rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-300">
           <Image
             src={URL.createObjectURL(file)}
             alt={file.name}
