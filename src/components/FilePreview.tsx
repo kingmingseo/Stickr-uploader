@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useEffect } from "react";
 import Image from "next/image";
 
 interface FilePreviewProps {
@@ -12,12 +12,22 @@ export default function FilePreview({
   onRemove,
   disabled = false,
 }: FilePreviewProps) {
+  // URL을 메모이제이션해서 파일이 변경되지 않으면 같은 URL 사용
+  const imageUrl = useMemo(() => URL.createObjectURL(file), [file]);
+
+  // 컴포넌트 언마운트 시 URL 정리
+  useEffect(() => {
+    return () => {
+      URL.revokeObjectURL(imageUrl);
+    };
+  }, [imageUrl]);
+
   return (
     <div className="flex-shrink-0 group">
       <div className="relative">
         <div className="w-32 h-32 bg-gray-300 border-2 border-gray-200 rounded-2xl overflow-hidden shadow-md group-hover:shadow-lg transition-all duration-300">
           <Image
-            src={URL.createObjectURL(file)}
+            src={imageUrl}
             alt={file.name}
             width={128}
             height={128}

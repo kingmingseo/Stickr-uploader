@@ -345,22 +345,12 @@ export default function PrivacyPage() {
         </div>
 
         {/* Navigation Links */}
-        <div className="mt-8 flex justify-center gap-6">
+        <div className="mt-8 text-center">
           <Link 
             href="/terms"
             className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-purple-600 transition-colors duration-200"
           >
             이용약관 보기
-          </Link>
-          <span className="text-gray-300">|</span>
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-purple-600 transition-colors duration-200"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-            </svg>
-            홈으로 돌아가기
           </Link>
         </div>
       </main>
