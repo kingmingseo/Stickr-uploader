@@ -148,7 +148,7 @@ const imageUrl = useMemo(() => URL.createObjectURL(file), [file]);
 
 ---
 
-**작성일**: 2025-01-17  
+**작성일**: 2025-11-17  
 **버전**: 1.0  
 **상태**: ✅ 해결 완료
 
